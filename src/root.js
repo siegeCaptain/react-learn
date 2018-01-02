@@ -45,6 +45,9 @@ class App extends React.Component {
     PubSub.subscribe('PLAY_NEXT', (msg, item) => {
       this.playNext();
     });
+    PubSub.subscribe('CHANGE_REPEAT', (msg, item) => {
+
+    });
   }
 
   playNext(type = 'next') {
@@ -77,6 +80,7 @@ class App extends React.Component {
     PubSub.unsubscribe('DEL_MUSIC');
     PubSub.unsubscribe('PLAY_PREV');
     PubSub.unsubscribe('DEL_NEXT');
+    PubSub.unsubscribe('CHANGE_REPEAT');
     $('#jPlayer').unbind($.jPlayer.event.ended);
   }
 

@@ -15,7 +15,8 @@ class Player extends React.Component {
       progress: 0,
       volume: 0,
       isPlay: true,
-      leftTime: ''
+      leftTime: '',
+      repeatType: 'cycle'
     }
   }
 
@@ -72,9 +73,9 @@ class Player extends React.Component {
     PubSub.publish('PLAY_PREV');
   }
 
-  // changeRepeat() {
-  //   PubSub.publish('CHANAGE_REPEAT');
-  // }
+  changeRepeat() {
+    PubSub.publish('CHANGE_REPEAT');
+  }
 
   render() {
     return (
@@ -107,7 +108,7 @@ class Player extends React.Component {
                 <i className="icon next ml20" onClick={this.playNext.bind(this)}></i>
               </div>
               <div className="-col-auto">
-                <i className="icon"></i>
+                <i className={`icon repeat-${this.state.repeatType}`} onClick={this.changeRepeat.bind(this)}></i>
               </div>
             </div>
           </div>
@@ -115,6 +116,8 @@ class Player extends React.Component {
             <img src={this.props.currentMusicItem.cover} alt={this.props.currentMusicItem.title}/>
           </div>
         </div>
+
+        <h1 className="caption"><Link to="/gallery">我的画廊>></Link></h1>
       </div>
     );
   }
